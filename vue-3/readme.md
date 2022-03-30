@@ -22,3 +22,36 @@
   </script>
 </body>
 ```
+
+- {{}} is known as mustache tag
+- Reactivity is a programming paradigm that allows us to adjust to changes in a declarative manner.
+
+```html
+  <body>
+    <div id="vue_app">
+      <h1 :key="city">{{city}}</h1>
+      <p>{{street}}</p>
+      <p>{{nation}}</p>
+
+      <p>{{$data}}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        setup() {
+          return {
+            street: 'Ngong Road',
+          };
+        },
+        data() {
+          return {
+            city: 'Nairobi',
+            nation: 'Kenya',
+          };
+        },
+      });
+      let vue_app = app.mount('#vue_app');
+    </script>
+  </body>
+</html>
+```

@@ -90,3 +90,30 @@
   </script>
 </body>
 ```
+
+```html
+<body>
+  <div id="vue_app">
+    <h1 v-bind:city="city.toUpperCase()">{{nation}}</h1>
+
+    <p>{{nation}}</p>
+
+    <input type="text" v-model="city" :disabled="!false" />
+
+    {{city}}
+  </div>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script>
+    let app = Vue.createApp({
+      data() {
+        return {
+          city: 'Nairobi',
+          nation: 'Kenya',
+        };
+      },
+    });
+    let vue_app = app.mount('#vue_app');
+  </script>
+</body>
+```

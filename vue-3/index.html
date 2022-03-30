@@ -7,29 +7,24 @@
     <title>Document</title>
   </head>
 
-  <div id="vue_app">
-    <h1 :key="city">{{city}}</h1>
-    <p>{{street}}</p>
-    <p>{{nation}}</p>
-    <p>{{$data}}</p>
-    <input type="text" :disabled="isDisabled" />
-    {{city}}
-  </div>
-
   <body>
+    <div id="vue_app">
+      <h1 v-bind:city="city.toUpperCase()">{{nation}}</h1>
+
+      <p>{{nation}}</p>
+
+      <input type="text" v-model="city" :disabled="!false" />
+
+      {{city}}
+    </div>
+
     <script src="https://unpkg.com/vue@3"></script>
     <script>
       let app = Vue.createApp({
-        setup() {
-          return {
-            street: 'Ngong Road',
-          };
-        },
         data() {
           return {
             city: 'Nairobi',
             nation: 'Kenya',
-            isDisabled: true,
           };
         },
       });

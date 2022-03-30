@@ -55,3 +55,38 @@
   </body>
 </html>
 ```
+
+- v-bind is used to bind data to a DOM element
+- v-bind Controlling Attribute Values
+
+```html
+<div id="vue_app">
+  <h1 :key="city">{{city}}</h1>
+  <p>{{street}}</p>
+  <p>{{nation}}</p>
+  <p>{{$data}}</p>
+  <input type="text" :disabled="isDisabled" />
+  {{city}}
+</div>
+
+<body>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script>
+    let app = Vue.createApp({
+      setup() {
+        return {
+          street: 'Ngong Road',
+        };
+      },
+      data() {
+        return {
+          city: 'Nairobi',
+          nation: 'Kenya',
+          isDisabled: true,
+        };
+      },
+    });
+    let vue_app = app.mount('#vue_app');
+  </script>
+</body>
+```

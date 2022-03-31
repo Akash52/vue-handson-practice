@@ -12,7 +12,7 @@
 
       <h3>Name & describe your event</h3>
 
-      <BaseInput label="Title" v-model="event.title" type="text" />
+      <BaseInput v-model="event.title" type="text" label="Title" />
 
       <BaseInput label="Description" v-model="event.description" type="text" />
 
@@ -21,12 +21,13 @@
       <BaseInput v-model="event.location" label="Location" type="text" />
 
       <h3>Are pets allowed?</h3>
-      <div>
-        <BaseRadio v-model="event.pets" :value="1" label="Yes" name="pets" />
-      </div>
 
       <div>
-        <BaseRadio v-model="event.pets" label="No" :value="0" name="pets" />
+        <BaseRadioGroup
+          v-model="event.pets"
+          label="Pets"
+          :options="petsOptions"
+        />
       </div>
 
       <h3>Extras</h3>
@@ -46,7 +47,7 @@
 import BaseInput from '@/components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
 import BaseCheckbox from '@/components/BaseCheckbox.vue'
-import BaseRadio from '@/components/BaseRadio.vue'
+import BaseRadioGroup from '@/components/BaseRadioGroup.vue'
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -70,9 +71,19 @@ export default {
           catering: false,
           music: false
         }
-      }
+      },
+      petsOptions: [
+        {
+          label: 'Yes',
+          value: 1
+        },
+        {
+          label: 'No',
+          value: 0
+        }
+      ]
     }
   },
-  components: { BaseInput, BaseSelect, BaseCheckbox, BaseRadio }
+  components: { BaseInput, BaseSelect, BaseCheckbox, BaseRadioGroup }
 }
 </script>

@@ -12,9 +12,9 @@
 
       <h3>Name & describe your event</h3>
 
-      <BaseInput v-model="event.title" label="Title" type="text" />
+      <BaseInput label="Title" v-model="event.title" type="text" />
 
-      <BaseInput v-model="event.description" label="Description" type="text" />
+      <BaseInput label="Description" v-model="event.description" type="text" />
 
       <h3>Where is your event?</h3>
 
@@ -33,15 +33,12 @@
 
       <h3>Extras</h3>
       <div>
-        <input type="checkbox" v-model="event.extras.catering" class="field" />
-        <label>Catering</label>
+        <BaseCheckbox label="Catering" v-model="event.extras.catering" />
       </div>
 
       <div>
-        <input type="checkbox" v-model="event.extras.music" class="field" />
-        <label>Live music</label>
+        <BaseCheckbox label="Music" v-model="event.extras.music" />
       </div>
-
       <button class="button -fill-gradient" type="submit">Submit</button>
     </form>
   </div>
@@ -50,6 +47,7 @@
 <script>
 import BaseInput from '@/components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
+import BaseCheckbox from '@/components/BaseCheckbox.vue'
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -76,6 +74,6 @@ export default {
       }
     }
   },
-  components: { BaseInput, BaseSelect }
+  components: { BaseInput, BaseSelect, BaseCheckbox }
 }
 </script>

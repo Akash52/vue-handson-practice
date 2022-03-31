@@ -2,17 +2,13 @@
   <div>
     <h1>Create an event</h1>
     <form>
-      <label>Select a category</label>
-      <select v-model="event.category">
-        <option
-          v-for="option in categories"
-          :value="option"
-          :key="option"
-          :selected="option === event.category"
-        >
-          {{ option }}
-        </option>
-      </select>
+      <BaseSelect
+        :options="categories"
+        v-model="event.category"
+        label="Category"
+      />
+
+      {{ $data }}
 
       <h3>Name & describe your event</h3>
 
@@ -53,6 +49,7 @@
 
 <script>
 import BaseInput from '@/components/BaseInput.vue'
+import BaseSelect from '../components/BaseSelect.vue'
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -79,6 +76,6 @@ export default {
       }
     }
   },
-  components: { BaseInput }
+  components: { BaseInput, BaseSelect }
 }
 </script>

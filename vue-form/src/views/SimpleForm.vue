@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Create an event</h1>
-    <form>
+    <form @submit.prevent="sendForm">
       <BaseSelect
         :options="categories"
         v-model="event.category"
@@ -48,7 +48,9 @@ import BaseInput from '@/components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
 import BaseCheckbox from '@/components/BaseCheckbox.vue'
 import BaseRadioGroup from '@/components/BaseRadioGroup.vue'
+import axios from 'axios'
 export default {
+  components: { BaseInput, BaseSelect, BaseCheckbox, BaseRadioGroup },
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -84,6 +86,21 @@ export default {
       ]
     }
   },
-  components: { BaseInput, BaseSelect, BaseCheckbox, BaseRadioGroup }
+  methods: {
+    // eslint-disable-next-line space-before-function-paren
+    sendForm() {
+      axios
+        .post(
+          'https://my-json-server.typicode.com/Code-Pop/Vue-3-Forms/events',
+          this.event
+        )
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
 }
 </script>

@@ -1,5 +1,4 @@
 <template>
-  <h1>Hello Wolrd</h1>
   <simple-form />
 </template>
 

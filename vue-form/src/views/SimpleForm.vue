@@ -90,10 +90,7 @@ export default {
     // eslint-disable-next-line space-before-function-paren
     sendForm() {
       axios
-        .post(
-          'https://my-json-server.typicode.com/Code-Pop/Vue-3-Forms/events',
-          this.event
-        )
+        .post('http://localhost:5000/fordata', this.event)
         .then((response) => {
           console.log(response)
         })

@@ -1,11 +1,26 @@
-# vue-sm-practical (PR-2)
+### Apropriate Typse
 
-[Live Demo](https://vue-sm-pr2.netlify.app/)
+#### input type
 
-### Car List Application With Coditional Logic
+- checkbox
+- radio
+- tel
+- button
+- submit
+- text
+- password
+- email
+- url
+- number
+- range
+- date
+- month
+- week
+- time
+- datetime
+- datetime-local
+- reset
+- search
+- color
 
-![alt](https://i.ibb.co/VSrMTkC/vue-Pr-2.png)
-
-### Card Card
-
-![alt](https://i.ibb.co/Xb44CC9/vue-todo.png)
+### Use <fieldset> and <legend>

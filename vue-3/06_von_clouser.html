@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="vue_app">
+      <button @click="outer($event)()">Vue Button</button>
+    </div>
+    <hr />
+    <button id="btn">Native Button</button>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        methods: {
+          outer() {
+            console.log('Vue outer function');
+            let num = 0;
+            return () => {
+              console.log('Vue inner function');
+              console.log(num--);
+            };
+          },
+        },
+      });
+      let vue_app = app.mount('#vue_app');
+    </script>
+    <script>
+      function outer() {
+        let num = 0;
+        console.log('outer');
+        return function () {
+          console.log('inner');
+          console.log(num++);
+        };
+      }
+      document.getElementById('btn').addEventListener('click', outer());
+    </script>
+  </body>
+</html>
+
+<!-- Simple Couter Example -->

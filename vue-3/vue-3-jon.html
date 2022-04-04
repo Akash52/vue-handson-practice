@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <body>
+      <div id="vue_app">
+       <ul>
+            <li v-for="item in json ">
+                <span v-text="item.name"></span>
+                <span v-text="item.age"></span>
+            </li>
+       </ul>
+        
+      </div>
+    
+      <script src="https://unpkg.com/vue@3"></script>
+      <script>
+        let app = Vue.createApp({
+          data() {
+            return {
+             json : [
+                {
+                    "id": 1,
+                    "name": "John",
+                    "age": 30
+                },
+                {
+                    "id": 2,
+                    "name": "Mary",
+                    "age": 31
+                },
+                {
+                    "id": 3,
+                    "name": "Mike",
+                    "age": 32
+                },
+                {
+                    "id": 4,
+                    "name": "Adam",
+                    "age": 33
+                }
+             ]
+            };
+          },
+        });
+        let vue_app = app.mount('#vue_app');
+      </script>
+    </body>
+</html>

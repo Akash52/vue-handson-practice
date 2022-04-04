@@ -117,3 +117,5 @@
   </script>
 </body>
 ```
+
+- Setup function is another way to set up data and methods.

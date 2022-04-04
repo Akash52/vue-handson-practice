@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <body>
+      <div id="vue_app">
+          <h1>{{new Date().getFullYear()-year}}</h1>
+          <p>{{city}} {{capitalizedCity}}</p>  
+          <h1>{{fullName}}</h1>
+          <p>{{brand}} {{model}}</p>
+      </div>
+    
+      <script src="https://unpkg.com/vue@3"></script>
+      <script>
+        let app = Vue.createApp({
+            setup() {
+                  city:'New York';
+            },
+          data() {
+            return {
+                year: 2020 ,brand:'Toyota',model:'Corolla',
+            };
+          },
+          computed: {
+            fullName:{
+              get(){
+                return this.brand + ' ' + this.model;
+              },
+              set(val){
+                this.brand = val.brand
+                this.model = val.model
+              }
+            },
+            age() {
+                return new Date().getFullYear()-this.year;
+            },
+            capitalizedCity() {
+                return 
+                    this.city.toUpperCase()
+            },
+          },
+        });
+        let vue_app = app.mount('#vue_app');
+      </script>
+    </body>
+</html>

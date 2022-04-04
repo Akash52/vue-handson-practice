@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="vue_app">
+      <h1>{{num}}</h1>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            title: 'Vue.js',
+            note: 'This is a simple couter',
+            num: 0,
+          };
+        },
+        methods: {
+          test() {
+            console.log('test');
+            return this;
+          },
+          add() {
+            console.log('add');
+            this.num++;
+          },
+          remove() {
+            console.log('remove');
+            this.num--;
+          },
+        },
+      });
+      let vue_app = app.mount('#vue_app');
+    </script>
+  </body>
+</html>
+
+<!-- Simple Couter Example -->

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="vue_app">
+      <!-- <p>age:{{age}}</p> -->
+      <ul>
+        <li>
+          <div v-for(elem,index)="item in json"></div>
+        </li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        computed: {
+          ay() {
+            this.json.sort((a, b) => {
+              return a.year - b.year;
+            });
+          },
+        },
+        data() {
+          return {
+            json: [
+              {
+                id: 111,
+                brand: 'Toyota',
+                model: 'Corolla',
+                year: 2023,
+                location: 'New York',
+              },
+              {
+                id: 222,
+                brand: 'BMW',
+                model: 'Corolla',
+                year: 2020,
+                location: 'New York',
+              },
+              {
+                id: 333,
+                brand: 'Toyota',
+                model: 'Corolla',
+                year: 2021,
+                location: 'Delhi',
+              },
+              {
+                id: 444,
+                brand: 'Audi',
+                model: 'Corolla',
+                year: 2017,
+                location: 'Chicago',
+              },
+              {
+                id: 555,
+                brand: 'Scoda',
+                model: 'Corolla',
+                year: 2018,
+                location: 'Switzerland',
+              },
+              {
+                id: 666,
+                brand: 'Verst',
+                model: 'Corolla',
+                year: 2019,
+                location: 'London',
+              },
+              {
+                id: 777,
+                brand: 'Renault',
+                model: 'Corolla',
+                year: 2022,
+                location: 'New York',
+              },
+            ],
+          };
+        },
+      });
+
+      let vue_app = app.mount('#vue_app');
+    </script>
+  </body>
+</html>

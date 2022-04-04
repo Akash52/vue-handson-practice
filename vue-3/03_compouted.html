@@ -10,26 +10,28 @@
   <body>
     <body>
       <div id="vue_app">
-        <p>num:{{num}}</p>
-        <p>age:{{age}}</p>
+        <!-- <p>age:{{age}}</p> -->
         <p>Computed getters must never modify data Properties!</p>
       </div>
     
       <script src="https://unpkg.com/vue@3"></script>
       <script>
+          let cookie = {secret:true};
         let app = Vue.createApp({
             setup() {
                   city:'New York';
             },
           data() {
             return {
-                year: 2020,num:0,
+                year: 2020 ,city: 'London'
             };
           },
           computed: {
             age() {
                 console.log('age getter triggered');
-                this.num++;
+                if(cookie.secret){
+                    return 'access denied';
+                }
                 return new Date().getFullYear()-this.year;
             },
           },

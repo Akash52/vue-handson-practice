@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <body>
+      <div id="vue_app">
+        <p>num:{{num}}</p>
+        <p>age:{{age}}</p>
+        <p>Computed getters must never modify data Properties!</p>
+      </div>
+    
+      <script src="https://unpkg.com/vue@3"></script>
+      <script>
+        let app = Vue.createApp({
+            setup() {
+                  city:'New York';
+            },
+          data() {
+            return {
+                year: 2020,num:0,
+            };
+          },
+          computed: {
+            age() {
+                console.log('age getter triggered');
+                this.num++;
+                return new Date().getFullYear()-this.year;
+            },
+          },
+        });
+        let vue_app = app.mount('#vue_app');
+      </script>
+    </body>
+</html>

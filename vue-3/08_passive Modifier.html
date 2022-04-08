@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .bgOne {
+        background-color: #3a3845;
+        padding: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        margin: 5px;
+        height: 120px;
+      }
+      .bgTwo {
+        background-color: #46244c;
+        padding: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        margin: 5px;
+        height: 120px;
+      }
+      button {
+        background: #000;
+        color: white;
+        font-size: 18px;
+        outline: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+      }
+      #port {
+        outline: none;
+        border: 2px solid red;
+        padding: 5px;
+        height: 400px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="vue_app">
+      <h3>{{msg}}</h3>
+      <div id="port" v-on:scroll.passive="test">
+        <div class="bgOne"></div>
+        <div class="bgTwo"></div>
+        <div class="bgOne"></div>
+        <div class="bgTwo"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            msg: 'Scroll Event',
+            num: 0,
+          };
+        },
+        methods: {
+          test() {
+            console.log(this.num++);
+          },
+        },
+      });
+      let vue_app = app.mount('#vue_app');
+    </script>
+  </body>
+</html>

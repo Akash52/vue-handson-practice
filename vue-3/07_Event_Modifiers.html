@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .bgOne {
+        background-color: #3a3845;
+        padding: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        border: 4px solid pink;
+        margin-bottom: 5px;
+      }
+      .bgTwo {
+        background-color: #46244c;
+        padding: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        border: 4px solid gray;
+      }
+      button {
+        background: #000;
+        color: white;
+        font-size: 18px;
+        outline: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="vue_app">
+      <h3>{{msg}}</h3>
+      <!-- <button @click.once="test(`click`)">Click</button> -->
+      <div class="bgOne" @click="test(`Outer Div`)">
+        outer
+        <div class="bgTwo" @click.stop="test(`Inner Div`)">
+          inner
+          <button @click="test(`Inner Button`)">Inner Button</button>
+        </div>
+        <hr />
+      </div>
+      <div class="bgTwo" @click.capture="test(`Outer Div`)">
+        outer
+        <div class="bgOne" @click.capture="test(`Middle Div`)">
+          Middle
+        <div class="bgOne" @click="test(`Inner Div`)">
+          inner
+          <button @click="test(`Inner Button`)">Inner Button</button>
+        </div>
+      </div>
+      <a href="/test" @click.prevent>Link</a>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            msg: 'Event Modifier',
+            list: ['.once', '.stop', 'self', 'capture', '.prevent', '.passive'],
+          };
+        },
+        methods: {
+          test(v) {
+            console.log(v);
+          },
+        },
+      });
+      let vue_app = app.mount('#vue_app');
+    </script>
+  </body>
+</html>

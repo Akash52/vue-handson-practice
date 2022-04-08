@@ -119,3 +119,16 @@
 ```
 
 - Setup function is another way to set up data and methods.
+
+- 7. Event Modifiers .once, .stop, .self, .capture, and .prevent
+
+- We have six type of event modifer
+- once means event monitor once
+- stop, .self, .capture is for dealing propogation
+- Prevent is disabling default behavior
+- Passive Oposite of Prvent
+
+Note -
+
+- clicking the inner div called outer div called Propagation.
+  for stoping we use stop modifier

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue 3 Demo</title>
+    <style>
+      body,
+      h1,
+      h2,
+      p,
+      li,
+      span {
+        padding: 0;
+        margin: 0;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bolder;
+      }
+      body {
+        padding: 5px;
+      }
+      li {
+        line-height: 1.5;
+        color: lightsalmon;
+      }
+      h2 {
+        color: lightseagreen;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      button {
+        margin-right: 5px;
+      }
+      .notice {
+        text-align: center;
+        color: tomato;
+        line-height: 1.2;
+        padding: 5px;
+        font-size: 22px;
+        border: 1px solid tomato;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vue_app">
+      <div class="notice">
+        <p>Allow Cookie?</p>
+        <button :disabled="cookieAllowed==`allowed`" @click="setCookie(true)">
+          Allow
+        </button>
+        <button :disabled="cookieAllowed==`banned`" @click="setCookie(false)">
+          Ban
+        </button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            cookieAllowed: 'unknown', // unknown, allowed, banned; reactivity
+          };
+        },
+        created() {
+          let cookie = this.processCookie();
+          if (cookie.exists) {
+            if (cookie.allowed == 'allowed') {
+              this.cookieAllowed = 'allowed';
+            } else {
+              this.cookieAllowed = 'banned';
+            }
+          } else {
+            this.cookieAllowed = 'unknown';
+          }
+        },
+        methods: {
+          setCookie(dir) {
+            if (dir) {
+              document.cookie = 'allowed=allowed';
+              this.cookieAllowed = 'allowed';
+            } else {
+              document.cookie = 'allowed=banned';
+              this.cookieAllowed = 'banned';
+            }
+          },
+          processCookie() {
+            if (document.cookie) {
+              let obj = { exists: true };
+              document.cookie.split(';').map((elem) => {
+                let arr = elem.split('=');
+                let prop = arr[0].trim();
+                let val = arr[1].trim();
+                if (isNaN(val)) {
+                  if (val == 'true') {
+                    val = true;
+                  } else if (val == 'false') {
+                    val = false;
+                  }
+                } else {
+                  val = Number(val);
+                }
+                obj[prop] = val;
+              });
+              return obj;
+            } else {
+              return { exists: false };
+            }
+          },
+        },
+      });
+      let vm = app.mount('#vue_app');
+    </script>
+  </body>
+</html>

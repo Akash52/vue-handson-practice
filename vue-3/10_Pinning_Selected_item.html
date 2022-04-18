@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .bgOne {
+        background-color: #3a3845;
+        padding: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        margin: 5px;
+        height: 120px;
+      }
+      .bgTwo {
+        background-color: #46244c;
+        padding: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        margin: 5px;
+        height: 120px;
+      }
+      /* button {
+        background: #000;
+        color: white;
+        font-size: 18px;
+        outline: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        margin: 5px 10px;
+      } */
+      #port {
+        outline: none;
+        border: 2px solid red;
+        padding: 5px;
+        height: 400px;
+        overflow: auto;
+      }
+      p{
+        padding: 10px;
+        background-color: #d9bfe2;
+        width: 150px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="vue_app">
+      <ul v-if="comments.length">
+        <li v-for="element in comments" :key="element.id">
+            <p>
+              <code>
+              {{element}}
+            </code>
+            </p>
+        </li>
+      </ul>
+      
+      <p v-else>No comment yet....</p>
+      <hr>
+      <button @click="sortByDate(true)" :disabled="!asc">Ascending date</button>
+      <button  @click="sortByDate(false)" :disabled="!dsc">descending date</button>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        created(){ 
+            console.log('Retriving data from the backend api') 
+
+            let json = [
+            {
+                id: 111,
+                comment: 'apple',
+                street: 'Primrose',
+                date: '2019',
+                pinned: true,
+              },
+              {
+                id: 222,
+                comment: 'banana',
+                street: 'Cherry',
+                date: '2019',
+                pinned: true,
+              },
+              {
+                id: 333,
+                comment: 'cherry',
+                street: 'Apple',
+                date: '2019',
+                pinned: false,
+              },
+              {
+                id: 444,
+                comment: 'date',
+                street: 'Banana',
+                date: '2016',
+                pinned: false,
+              },
+              {
+                id: 555,
+                comment: 'elderberry',
+                street: 'Cherry',
+                date: '2017',
+                pinned: false,
+              },
+              {
+                id: 666,
+                comment: 'fig',
+                street: 'Apple',
+                date: '2018',
+                pinned: false,
+              },
+              {
+                id: 777,
+                comment: 'grape',
+                street: 'Banana',
+                date: '2019',
+                pinned: false,
+              },
+            ]
+            this.comments = json
+        },
+        data() {
+          return {
+            comments: [],
+            asc:true,
+            dsc:true
+          };
+        },
+        computed: {
+          comments(){
+            
+          }
+        },
+        methods: {
+          sortByDate(dir) {
+            if(dir){
+              this.comments.sort((a,b)=>{
+              return a.date - b.date
+              this.asc=false
+              this.dsc=true
+            })
+            }else{
+              this.comments.sort((a,b)=>{
+                return b.date - a.date
+              this.asc=true
+              this.dsc=false
+              })
+            }
+          },
+        },
+      });
+      let vue_app = app.mount('#vue_app');
+    </script>
+  </body>
+</html>

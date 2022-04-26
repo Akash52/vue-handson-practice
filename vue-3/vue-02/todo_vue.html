@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue 3 Demo</title>
+    <style>
+      body,
+      h1,
+      button,
+      p,
+      span,
+      ul,
+      li {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        padding: 10px;
+      }
+      h1 {
+        text-align: center;
+        color: #2c73d2;
+        font-family: monospace;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      button {
+        margin-left: 5px;
+        font-size: 12px;
+        padding: 2px;
+      }
+      span {
+        font-size: 10px;
+        margin-left: 5px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #0081cf;
+      }
+      p {
+        line-height: 36px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #008f7a;
+      }
+      ul {
+        margin: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #2c73d2;
+      }
+      li {
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vue_app">
+      <h1>{{title}}</h1>
+      <input type="text" v-model="new_item" @input="check" :placeholder="msg" />
+      <button @click="add_item" :disabled="new_item.length===0">add</button>
+      <span>{{max-new_item.length}}/{{max}}</span>
+      <ul v-if="list.length>0">
+        <li v-for="(elem,index) in list" :key="index">
+          {{elem}}
+          <button @click="delete_item(index)">Delete</button>
+        </li>
+      </ul>
+      <p v-else>No thing to do...</p>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            title: 'To-do List App',
+            new_item: '',
+            max: 8,
+            list: ['Apple', 'Grap'],
+          };
+        },
+        computed: {
+          msg() {
+            if (this.list.length === 0) return 'Add new item';
+            else if (this.list.length === 1) return 'one item';
+            else {
+              return this.list.length + ' items';
+            }
+          },
+        },
+        methods: {
+          add_item() {
+            if (this.new_item === 0) return;
+            this.list.push(this.new_item);
+            this.new_item = '';
+          },
+          delete_item(index) {
+            this.list.splice(index, 1);
+          },
+          check() {
+            if (this.new_item.length > this.max) {
+              this.new_item = this.new_item.substring(0, this.max);
+            }
+          },
+        },
+      });
+      let vm = app.mount('#vue_app');
+    </script>
+  </body>
+</html>
